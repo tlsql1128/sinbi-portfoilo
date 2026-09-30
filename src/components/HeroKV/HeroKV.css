@@ -1,0 +1,35 @@
+.hero-kv {
+  position: relative;
+  width: 100vw;
+  height: 100svh;
+  overflow: hidden;
+}
+
+.hero-kv__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero-kv__bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  user-select: none;
+}
+
+.hero-kv__ui {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 640px) {
+  .hero-kv__bg-img {
+    object-position: 55% center;
+  }
+}

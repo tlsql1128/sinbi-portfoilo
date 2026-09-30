@@ -1,0 +1,5 @@
+/* App-level layout reserved for future routes / chrome */
+#root {
+  width: 100%;
+  min-height: 100svh;
+}

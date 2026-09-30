@@ -1,0 +1,224 @@
+.kv-side {
+  position: absolute;
+  z-index: 1;
+  right: clamp(150px, 8vw, 180px);
+  left: auto;
+  top: 14%;
+  width: clamp(250px, calc(50vw - 460px), 408px);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 38px;
+}
+
+.kv-snapshot {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.65 / 1;
+  box-sizing: border-box;
+  padding: 22px 22px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 20px;
+  background: rgba(248, 240, 236, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 8px 22px rgba(90, 70, 65, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  overflow: hidden;
+  user-select: none;
+}
+
+.kv-snapshot__media {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  overflow: hidden;
+}
+
+.kv-snapshot__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.kv-snapshot__top,
+.kv-snapshot__count {
+  position: relative;
+  z-index: 1;
+}
+
+.kv-snapshot__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.kv-snapshot__kicker,
+.kv-snapshot__title,
+.kv-snapshot__meta,
+.kv-snapshot__count,
+.kv-snapshot__arrow {
+  margin: 0;
+  color: #805457;
+}
+
+.kv-snapshot__kicker {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  line-height: 1;
+  color: rgba(128, 84, 87, 0.62);
+}
+
+.kv-snapshot__title {
+  margin-top: 6px;
+  font-family: 'MaruBuri', serif;
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
+
+.kv-snapshot__meta {
+  margin-top: 8px;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: rgba(128, 84, 87, 0.58);
+}
+
+.kv-snapshot__arrow {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 15px;
+  line-height: 1;
+  color: rgba(128, 84, 87, 0.72);
+}
+
+.kv-snapshot__count {
+  align-self: flex-end;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: rgba(128, 84, 87, 0.55);
+}
+
+.kv-files {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.kv-file {
+  flex: 0 0 auto;
+  width: calc((100% - 40px) * 0.48);
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  color: #805457;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  transform: translateX(var(--file-shift, 0));
+  transition:
+    transform 280ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    color 280ms ease;
+}
+
+.kv-file--projects {
+  --file-shift: -0.6%;
+}
+
+.kv-file--about {
+  --file-shift: 1.4%;
+}
+
+.kv-file span {
+  width: 100%;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.kv-file img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  pointer-events: none;
+  transition: filter 280ms ease;
+}
+
+.kv-file:hover {
+  transform: translateX(var(--file-shift, 0)) translateY(-7px) scale(1.04);
+  color: #6a4447;
+}
+
+.kv-file:hover img {
+  filter: drop-shadow(0 10px 14px rgba(100, 70, 65, 0.12));
+}
+
+.kv-file:active {
+  transform: translateX(var(--file-shift, 0)) translateY(-3px) scale(0.98);
+}
+
+@media (max-width: 1280px) {
+  .kv-side {
+    width: clamp(230px, calc(50vw - 390px), 320px);
+    gap: 38px;
+  }
+
+  .kv-snapshot {
+    padding: 16px 16px 12px;
+  }
+
+  .kv-snapshot__title {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .kv-side {
+    top: 12%;
+  }
+}
+
+@media (max-width: 1040px) {
+  .kv-side {
+    right: 36px;
+    left: auto;
+    width: min(220px, calc(50vw - 250px));
+  }
+
+  .kv-snapshot__kicker {
+    font-size: 11px;
+  }
+
+  .kv-snapshot__title {
+    font-size: 18px;
+  }
+
+  .kv-snapshot__meta,
+  .kv-snapshot__count {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 640px) {
+  .kv-side {
+    top: 28%;
+  }
+}

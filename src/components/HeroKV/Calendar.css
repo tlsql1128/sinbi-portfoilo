@@ -1,0 +1,131 @@
+.kv-calendar {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 18px 18px 16px;
+  background: rgba(250, 242, 239, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 22px;
+  box-shadow: 0 8px 30px rgba(70, 50, 45, 0.06);
+  color: rgba(70, 55, 52, 0.88);
+  user-select: none;
+}
+
+.kv-calendar__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.kv-calendar__title {
+  margin: 0;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: rgba(90, 60, 58, 0.9);
+}
+
+.kv-calendar__nav {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.kv-calendar__nav-btn {
+  appearance: none;
+  border: none;
+  background: transparent;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  line-height: 1;
+  color: rgba(110, 80, 75, 0.7);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.kv-calendar__nav-btn:hover {
+  background: rgba(217, 154, 165, 0.18);
+  color: rgba(90, 60, 58, 0.95);
+}
+
+.kv-calendar__weekdays,
+.kv-calendar__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px 0;
+}
+
+.kv-calendar__weekday {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: rgba(120, 95, 90, 0.55);
+}
+
+.kv-calendar__day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 34px;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: rgba(70, 55, 52, 0.82);
+}
+
+.kv-calendar__day.is-outside {
+  color: rgba(70, 55, 52, 0.28);
+}
+
+.kv-calendar__day.is-today {
+  color: #fff;
+  font-weight: 500;
+  background: #d99aa5;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  margin: 2px auto;
+  justify-self: center;
+}
+
+@media (max-width: 1024px) {
+  .kv-calendar {
+    padding: 14px 14px 12px;
+    border-radius: 18px;
+  }
+
+  .kv-calendar__title {
+    font-size: 15px;
+  }
+
+  .kv-calendar__day {
+    height: 30px;
+    font-size: 14px;
+  }
+
+  .kv-calendar__day.is-today {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+@media (max-width: 640px) {
+  .kv-calendar {
+    width: 100%;
+  }
+}

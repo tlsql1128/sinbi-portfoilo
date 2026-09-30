@@ -1,0 +1,275 @@
+.placeholder-block {
+  background: #e4e0d8;
+  border-radius: 4px;
+}
+
+/* —— Projects —— */
+.win-projects {
+  padding: 28px 32px 40px;
+}
+
+.win-projects__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.win-projects__item {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(140px, 0.6fr);
+  gap: 24px;
+  align-items: end;
+}
+
+.win-projects__thumb {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  min-height: 140px;
+}
+
+.win-projects__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-bottom: 4px;
+}
+
+.win-projects__id {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: #7a766e;
+}
+
+.win-projects__title {
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: #1a1a1a;
+}
+
+/* —— About —— */
+.win-about {
+  padding: 28px 32px 40px;
+}
+
+.win-about__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.win-about__block {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.win-about__label {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #6a6660;
+}
+
+.win-about__placeholder {
+  min-height: 120px;
+  flex: 1;
+}
+
+.win-about__block:first-child .win-about__placeholder {
+  min-height: 160px;
+}
+
+/* —— Resume —— */
+.win-resume {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.win-resume__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  font-size: 11px;
+  color: #6a6660;
+  flex-shrink: 0;
+}
+
+.win-resume__viewer {
+  flex: 1;
+  overflow: auto;
+  padding: 24px;
+  background: #ece8e0;
+}
+
+.win-resume__page-sheet {
+  max-width: 520px;
+  margin: 0 auto;
+  min-height: 680px;
+  padding: 40px 36px;
+  background: #faf9f7;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.win-resume__line {
+  height: 10px;
+  width: 100%;
+}
+
+.win-resume__line--title {
+  height: 16px;
+  width: 42%;
+  margin-bottom: 8px;
+}
+
+.win-resume__line--mid {
+  width: 55%;
+}
+
+.win-resume__line--short {
+  width: 38%;
+}
+
+.win-resume__spacer {
+  height: 18px;
+}
+
+.win-resume__block {
+  height: 72px;
+  width: 100%;
+  margin-top: 4px;
+}
+
+/* —— Notes —— */
+.win-notes {
+  height: 100%;
+  padding: 24px 28px;
+}
+
+.win-notes__editor {
+  position: relative;
+  min-height: 100%;
+  font-size: 13px;
+  line-height: 1.7;
+  letter-spacing: -0.01em;
+  color: #2a2a2a;
+  font-family: 'IBM Plex Mono', 'Consolas', monospace;
+}
+
+.win-notes__line {
+  margin: 0;
+}
+
+.win-notes__line.is-empty {
+  min-height: 1.7em;
+}
+
+.win-notes__caret {
+  display: inline-block;
+  width: 7px;
+  height: 1.1em;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  background: #1a1a1a;
+  opacity: 0.35;
+  animation: caret-blink 1.1s steps(1) infinite;
+}
+
+@keyframes caret-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* —— Contact —— */
+.win-contact {
+  padding: 28px 28px 32px;
+}
+
+.win-contact__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.win-contact__item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.win-contact__label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #6a6660;
+}
+
+.win-contact__value {
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+}
+
+.win-contact__item:last-child .win-contact__value {
+  min-height: 96px;
+  align-items: flex-start;
+  padding-top: 12px;
+}
+
+.win-contact__ghost {
+  font-size: 13px;
+  color: #9a968e;
+}
+
+@media (max-width: 640px) {
+  .win-projects,
+  .win-about,
+  .win-contact {
+    padding: 20px 16px 28px;
+  }
+
+  .win-projects__item {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .win-about__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .win-resume__viewer {
+    padding: 16px;
+  }
+
+  .win-resume__page-sheet {
+    padding: 28px 20px;
+    min-height: 520px;
+  }
+
+  .win-notes {
+    padding: 20px 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .win-notes__caret {
+    animation: none;
+    opacity: 0.35;
+  }
+}

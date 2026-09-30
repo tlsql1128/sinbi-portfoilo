@@ -1,0 +1,74 @@
+.desktop-shell {
+  position: relative;
+  width: 100vw;
+  height: 100svh;
+  overflow: hidden;
+}
+
+/* Background layer — replace with image/texture later */
+.desktop-shell__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-color: #f5f3ef;
+  background-image: none;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+.desktop-shell__ui {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.desktop {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.desktop__files {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+.desktop__hint {
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  z-index: 3;
+  margin: 0;
+  font-size: 11px;
+  letter-spacing: -0.01em;
+  color: rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+  user-select: none;
+}
+
+@media (max-width: 640px) {
+  .desktop__files {
+    position: relative;
+    inset: auto;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px 12px;
+    padding: 36px 20px 80px;
+    align-content: start;
+  }
+
+  .desktop__hint {
+    left: 50%;
+    bottom: 24px;
+    transform: translateX(-50%);
+    text-align: center;
+    width: max-content;
+  }
+}
