@@ -1,6 +1,6 @@
-import toolCall from '../assets/images/tool-call.png'
-import toolPdf from '../assets/images/tool-pdf.png'
-import kakaoQr from '../assets/images/qr.png'
+import toolCall from '../assets/images/tool-call.webp'
+import toolPdf from '../assets/images/tool-pdf.webp'
+import kakaoQr from '../assets/images/qr.webp'
 
 export interface ContactAction {
   id: 'contact'

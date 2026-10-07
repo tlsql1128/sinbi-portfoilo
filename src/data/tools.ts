@@ -1,12 +1,12 @@
-import toolCap from '../assets/images/tool-cap.png'
-import toolClu from '../assets/images/tool-clu.png'
-import toolCur from '../assets/images/tool-cur.png'
-import toolFig from '../assets/images/tool-fig.png'
-import toolGit from '../assets/images/tool-git.png'
-import toolGmi from '../assets/images/tool-gmi.png'
-import toolGpt from '../assets/images/tool-gpt.png'
-import toolPho from '../assets/images/tool-pho.png'
-import toolSla from '../assets/images/tool-sla.png'
+import toolCap from '../assets/images/tool-cap.webp'
+import toolClu from '../assets/images/tool-clu.webp'
+import toolCur from '../assets/images/tool-cur.webp'
+import toolFig from '../assets/images/tool-fig.webp'
+import toolGit from '../assets/images/tool-git.webp'
+import toolGmi from '../assets/images/tool-gmi.webp'
+import toolGpt from '../assets/images/tool-gpt.webp'
+import toolPho from '../assets/images/tool-pho.webp'
+import toolSla from '../assets/images/tool-sla.webp'
 
 export interface ToolItem {
   id: string

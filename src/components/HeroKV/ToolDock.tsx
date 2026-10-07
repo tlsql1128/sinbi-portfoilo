@@ -1,6 +1,6 @@
 import type { MouseEvent } from 'react'
-import toolCall from '../../assets/images/tool-call.png'
-import toolPdf from '../../assets/images/tool-pdf.png'
+import toolCall from '../../assets/images/tool-call.webp'
+import toolPdf from '../../assets/images/tool-pdf.webp'
 import type { DockActionId } from '../../data/dockActions'
 import { tools } from '../../data/tools'
 import type { ModalOrigin } from './types'

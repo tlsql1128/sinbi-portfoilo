@@ -1,11 +1,13 @@
-import { useCallback, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import kvImage from '../../assets/images/kv.png'
 import { dockActions, type DockActionId } from '../../data/dockActions'
+import { projectIdFromPath } from '../../data/projects'
 import { tools } from '../../data/tools'
 import LeftRail from './LeftRail'
 import WidgetStack from './WidgetStack'
 import Clock from './Clock'
 import PortfolioType from './PortfolioType'
+import ProjectsWindow from './ProjectsWindow'
 import ToolDock from './ToolDock'
 import ToolModal from './ToolModal'
 import type { ModalOrigin } from './types'
@@ -15,9 +17,44 @@ type OpenModal =
   | { kind: 'tool'; id: string }
   | { kind: 'action'; id: DockActionId }
 
+function usePathname() {
+  const [pathname, setPathname] = useState(() => window.location.pathname)
+
+  useEffect(() => {
+    const sync = () => setPathname(window.location.pathname)
+    window.addEventListener('popstate', sync)
+
+    const { pushState, replaceState } = window.history
+    window.history.pushState = function (...args: Parameters<History['pushState']>) {
+      pushState.apply(this, args)
+      sync()
+    }
+    window.history.replaceState = function (...args: Parameters<History['replaceState']>) {
+      replaceState.apply(this, args)
+      sync()
+    }
+
+    return () => {
+      window.removeEventListener('popstate', sync)
+      window.history.pushState = pushState
+      window.history.replaceState = replaceState
+    }
+  }, [])
+
+  return pathname
+}
+
 export default function HeroKV() {
   const [open, setOpen] = useState<OpenModal | null>(null)
   const [isClosing, setIsClosing] = useState(false)
+  const pathname = usePathname()
+  const projectDetailId = projectIdFromPath(pathname)
+  const isProjectDetail = projectDetailId !== null
+  const [projectsOpen, setProjectsOpen] = useState(() => projectIdFromPath(window.location.pathname) !== null)
+  const [launchProjectId, setLaunchProjectId] = useState<string | null>(null)
+  const [launchProjectToken, setLaunchProjectToken] = useState(0)
+  const initialProjectId = projectIdFromPath(window.location.pathname)
+  const [projectsClosing, setProjectsClosing] = useState(false)
   const [origin, setOrigin] = useState<ModalOrigin | null>(null)
   const openRef = useRef<string | null>(null)
 
@@ -87,12 +124,29 @@ export default function HeroKV() {
         />
       </div>
 
-      <div className="hero-kv__ui">
-        <LeftRail />
-        <Clock />
-        <WidgetStack />
-        <PortfolioType />
-      </div>
+      {isProjectDetail ? null : (
+        <div className="hero-kv__ui">
+          <LeftRail
+            onOpenProjects={() => {
+              setProjectsClosing(false)
+              setProjectsOpen(true)
+            }}
+            onOpenProject={(id) => {
+              setProjectsClosing(false)
+              setLaunchProjectId(id)
+              setLaunchProjectToken((token) => token + 1)
+              setProjectsOpen(true)
+              const nextPath = `/projects/${id}`
+              if (window.location.pathname !== nextPath) {
+                window.history.pushState({ projectId: id }, '', nextPath)
+              }
+            }}
+          />
+          <Clock />
+          <WidgetStack />
+          <PortfolioType />
+        </div>
+      )}
 
       {(selectedTool || selectedAction) && origin && (
         <ToolModal
@@ -107,12 +161,28 @@ export default function HeroKV() {
         />
       )}
 
-      <ToolDock
-        activeId={!isClosing && open?.kind === 'tool' ? open.id : null}
-        activeActionId={!isClosing && open?.kind === 'action' ? open.id : null}
-        onSelect={selectTool}
-        onSelectAction={selectAction}
-      />
+      {projectsOpen ? (
+        <ProjectsWindow
+          isClosing={projectsClosing}
+          initialProjectId={launchProjectId ?? initialProjectId}
+          requestedProjectId={launchProjectId}
+          requestedProjectToken={launchProjectToken}
+          onClose={() => setProjectsClosing(true)}
+          onCloseComplete={() => {
+            setProjectsOpen(false)
+            setProjectsClosing(false)
+          }}
+        />
+      ) : null}
+
+      {isProjectDetail ? null : (
+        <ToolDock
+          activeId={!isClosing && open?.kind === 'tool' ? open.id : null}
+          activeActionId={!isClosing && open?.kind === 'action' ? open.id : null}
+          onSelect={selectTool}
+          onSelectAction={selectAction}
+        />
+      )}
     </section>
   )
 }

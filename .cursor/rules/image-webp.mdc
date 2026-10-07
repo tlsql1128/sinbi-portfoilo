@@ -1,0 +1,20 @@
+---
+description: Convert new UI PNGs to WebP before using them in the site
+alwaysApply: true
+---
+
+# Image format
+
+Production UI images use real WebP files. PNG stays the original and is not what React, CSS, or HTML should reference.
+
+When a new PNG is added or the user asks to use a PNG in the UI:
+
+1. Encode it to WebP. Do not rename the extension.
+2. Keep alpha on transparent images such as icons and folders.
+3. Photos and backgrounds: quality 82–88. Icons and transparent UI: quality 90–95. Prefer visual quality over smaller files.
+4. Check size, transparency, and edges. Keep the PNG instead if WebP is larger, alpha or edges look worse, or a small icon or QR code gets damaged.
+5. Point imports, `src`, and `url()` at the WebP file.
+6. After the WebP file is in use, delete that PNG original. If WebP is not suitable and the PNG stays the production file, do not delete it.
+7. Do not change layout or design just to optimize images.
+
+Do not set `loading="lazy"` on the KV background, dock icons, or other images visible on the first screen. Use it for project images that sit below the fold.
